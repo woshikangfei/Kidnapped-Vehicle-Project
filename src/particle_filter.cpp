@@ -13,12 +13,8 @@
 using namespace std;
 
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
-	// Sets the number of particles. Initializes all particles to first position (based on estimates of
-  // x, y, theta and their uncertainties from GPS) and all weights to 1.
-	// Adds random Gaussian noise to each particle.
-  
-  // Set number of particles
-  // *** Can be tuned ***
+
+
   num_particles = 100;
     
   // Resize weights vector based on num_particles
@@ -92,13 +88,8 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], 
 		vector<LandmarkObs> observations, Map map_landmarks) {
-	// Updates the weights of each particle using a multi-variate Gaussian distribution. You can read
-	//   more about this distribution here: https://en.wikipedia.org/wiki/Multivariate_normal_distribution
-  // First, when iterating through each particle, need to transform observation points to map coordinates.
-  // Next, associate each observation to its nearest landmark. The distribution can then be calculated.
-  
-  // First term of multi-variate normal Gaussian distribution calculated below
-  // It stays the same so can be outside the loop
+
+
   const double a = 1 / (2 * M_PI * std_landmark[0] * std_landmark[1]);
   
   // The denominators of the mvGd also stay the same
