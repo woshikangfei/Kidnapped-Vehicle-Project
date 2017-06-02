@@ -18,9 +18,6 @@ struct Particle {
 	double y;
 	double theta;
 	double weight;
-	std::vector<int> associations;
-	std::vector<double> sense_x;
-	std::vector<double> sense_y;
 };
 
 
@@ -28,9 +25,7 @@ struct Particle {
 class ParticleFilter {
 	
 	// Number of particles to draw
-	int num_particles; 
-	
-	
+	int num_particles;
 	
 	// Flag, if filter is initialized
 	bool is_initialized;
@@ -84,8 +79,8 @@ public:
 	 * updateWeights Updates the weights for each particle based on the likelihood of the 
 	 *   observed measurements. 
 	 * @param sensor_range Range [m] of sensor
-	 * @param std_landmark[] Array of dimension 2 [standard deviation of range [m],
-	 *   standard deviation of bearing [rad]]
+	 * @param std_landmark[] Array of dimension 2 [standard deviation of x [m],
+	 *   standard deviation of y [m]]
 	 * @param observations Vector of landmark observations
 	 * @param map Map class containing map landmarks
 	 */
@@ -97,17 +92,13 @@ public:
 	 *   the new set of particles.
 	 */
 	void resample();
-
-	/*
-	 * Set a particles list of associations, along with the associations calculated world x,y coordinates
-	 * This can be a very useful debugging tool to make sure transformations are correct and assocations correctly connected
-	 */
-	Particle SetAssociations(Particle particle, std::vector<int> associations, std::vector<double> sense_x, std::vector<double> sense_y);
 	
-	std::string getAssociations(Particle best);
-	std::string getSenseX(Particle best);
-	std::string getSenseY(Particle best);
-
+	/*
+	 * write Writes particle positions to a file.
+	 * @param filename File to write particle positions to.
+	 */
+	void write(std::string filename);
+	
 	/**
 	 * initialized Returns whether particle filter is initialized yet or not.
 	 */
