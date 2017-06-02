@@ -17,7 +17,8 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
   // x, y, theta and their uncertainties from GPS) and all weights to 1.
 	// Adds random Gaussian noise to each particle.
   
-
+  // Set number of particles
+  // *** Can be tuned ***
   num_particles = 100;
     
   // Resize weights vector based on num_particles
